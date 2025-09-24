@@ -9,7 +9,7 @@ RUN microdnf -y install \
       xorg-x11-server-Xwayland \
       xdg-desktop-portal xdg-desktop-portal-wlr \
       mate-polkit \
-      wl-clipboard brightnessctl cliphist \
+      wl-clipboard brightnessctl \
       NetworkManager \
       libva-intel-media-driver libva-utils mesa-dri-drivers mesa-vulkan-drivers \
       rsms-inter-vf-fonts fira-code-fonts google-noto-emoji-fonts jetbrains-mono-fonts \
