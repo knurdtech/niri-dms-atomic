@@ -4,12 +4,12 @@ FROM quay.io/fedora/fedora-bootc:latest
 # --- Core desktop stack ---
 # Niri compositor, seatd for input, audio/portal plumbing, XWayland for X apps
 RUN microdnf -y install \
-      niri seatd greetd \
+      seatd greetd \
       pipewire pipewire-alsa pipewire-pulse wireplumber cava \
       xorg-x11-server-Xwayland \
       xdg-desktop-portal xdg-desktop-portal-wlr \
       polkit-mate \
-      wl-clipboard brightnessctl cliphist \
+      wl-clipboard brightnessctl \
       NetworkManager \
       libva-intel-media-driver libva-utils mesa-dri-drivers mesa-vulkan-drivers \
       rsms-inter-vf-fonts fira-code-fonts google-noto-emoji-fonts jetbrains-mono-fonts \
