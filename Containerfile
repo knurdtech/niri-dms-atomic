@@ -1,5 +1,11 @@
-# Base bootable container OS (Fedora)
+# --- Build cliphist from source (no COPR needed) ---
+FROM docker.io/library/golang:1.22 AS cliphist-builder
+ENV CGO_ENABLED=0 GO111MODULE=on GOBIN=/out
+RUN go install github.com/sentriz/cliphist@v0.6.2
+
+# --- Final bootc image ---
 FROM quay.io/fedora/fedora-bootc:latest
+SHELL ["/bin/sh","-o","pipefail","-c"]
 
 # --- Core desktop stack ---
 # Niri compositor, seatd for input, audio/portal plumbing, XWayland for X apps
@@ -47,18 +53,8 @@ enabled=1
 EOF
 RUN microdnf -y install matugen || true && microdnf clean all
 
-# Cliphist COPR + install
-RUN cat >/etc/yum.repos.d/wef-cliphist.repo <<'EOF'
-[copr:copr.fedorainfracloud.org:wef:cliphist]
-name=COPR repo for cliphist
-baseurl=https://download.copr.fedorainfracloud.org/results/wef/cliphist/fedora-$releasever-$basearch/
-type=rpm-md
-gpgcheck=1
-gpgkey=https://download.copr.fedorainfracloud.org/results/wef/cliphist/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-EOF
-RUN microdnf -y install cliphist && microdnf clean all
+# Cliphist: copy the self-built static binary
+COPY --from=cliphist-builder /out/cliphist /usr/local/bin/cliphist
 
 # --- Material Symbols (variable fonts): install from Google repo ---
 RUN install -d /usr/local/share/fonts/material-symbols && \
