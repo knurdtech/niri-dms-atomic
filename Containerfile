@@ -11,9 +11,7 @@ RUN microdnf -y install \
       polkit-mate \
       wl-clipboard brightnessctl cliphist \
       NetworkManager \
-      # Intel iGPU stack
       libva-intel-media-driver libva-utils mesa-dri-drivers mesa-vulkan-drivers \
-      # Fonts (Inter Variable, Fira Code, Material Symbols done below, plus Noto Emoji & JetBrains Mono)
       rsms-inter-vf-fonts fira-code-fonts google-noto-emoji-fonts jetbrains-mono-fonts \
       curl git fontconfig \
     && microdnf clean all
