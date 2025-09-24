@@ -8,7 +8,7 @@ RUN microdnf -y install \
       pipewire pipewire-alsa pipewire-pulse wireplumber cava \
       xorg-x11-server-Xwayland \
       xdg-desktop-portal xdg-desktop-portal-wlr \
-      polkit-mate \
+      mate-polkit \
       wl-clipboard brightnessctl \
       NetworkManager \
       libva-intel-media-driver libva-utils mesa-dri-drivers mesa-vulkan-drivers \
